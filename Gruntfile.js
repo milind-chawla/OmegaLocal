@@ -50,29 +50,15 @@ module.exports = function(grunt) {
 					}
 				]
 			},
-			angular_old: {
+			angular: {
 				files: [
 					{   expand: true,
-						cwd: 'bower_components/angular-old/',
+						cwd: 'bower_components/angular/',
 						src: ['**'], 
 						dest: 'WebContent/resources/angular/'
 					},
 					{   expand: true,
-						cwd: 'bower_components/angular-route-old/',
-						src: ['**'], 
-						dest: 'WebContent/resources/angular/'
-					}
-				]
-			},
-			angular_new: {
-				files: [
-					{   expand: true,
-						cwd: 'bower_components/angular-new/',
-						src: ['**'], 
-						dest: 'WebContent/resources/angular/'
-					},
-					{   expand: true,
-						cwd: 'bower_components/angular-route-new/',
+						cwd: 'bower_components/angular-route/',
 						src: ['**'], 
 						dest: 'WebContent/resources/angular/'
 					}

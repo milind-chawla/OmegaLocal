@@ -1,5 +1,5 @@
 {
-  "name": "OmegaLocal",
+  "name": "Omega",
   "description": "",
   "main": "",
   "moduleType": [
@@ -17,8 +17,10 @@
   "devDependencies": {
     "jquery": "jquery#1.12.3",
     "bootstrap": "bootstrap#3.3.6",
-    "angular": "angular#1.2.16",
-    "angular-route": "angular-route#1.2.16",
+    "angular-old": "angular#1.2.16",
+    "angular-new": "angular#1.5.5",
+    "angular-route-old": "angular-route#1.2.16",
+    "angular-route-new": "angular-route#1.5.5",
     "Materialize": "materialize#0.97.6",
     "bootbox.js": "bootbox#4.4.0"
   }
