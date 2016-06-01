@@ -17,7 +17,7 @@ public class HomeController {
     }
     
     @RequestMapping(value = { "/index", "/index/" }, method = { RequestMethod.GET })
-	public ModelAndView index(HttpServletRequest req){
+	public ModelAndView index(HttpServletRequest req) {
     	ModelAndView mv = new ModelAndView();
     	
 	    mv.setViewName("home/index");
