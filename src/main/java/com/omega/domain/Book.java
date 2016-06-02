@@ -26,7 +26,7 @@ public class Book {
 	public Book() {
 		this.id = -1L;
 		this.name = null;
-		this.image = null;
+		this.image = "xyz";
 	}
 
 	public Book(String name, String image) {

@@ -17,6 +17,11 @@ public class ModelAndViewFormer {
 	
 	private AbstractController ctl = null;
 	private ModelAndView mv = null;
+	
+	public ModelAndViewFormer(ModelAndView mv) {
+		this.mv = mv;
+		this.fillLinks();
+	}
 
 	public ModelAndViewFormer(AbstractController ctl, ModelAndView mv) {
 		this.ctl = ctl;
