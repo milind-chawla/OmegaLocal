@@ -30,7 +30,7 @@
     				</tr>
 	    		</tbody>
 	    	</table>
-	    	<a class="btn btn-default" role="button" href="${apath}">
+	    	<a class="btn btn-default" role="button" href="${path}">
 				<span class="glyphicon glyphicon-arrow-left"></span> Back
 			</a>
 	  	</div>

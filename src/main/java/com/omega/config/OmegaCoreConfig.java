@@ -1,5 +1,7 @@
 package com.omega.config;
 
+import java.io.File;
+
 import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
 
@@ -15,7 +17,18 @@ import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
+import com.omega.context.OmegaContextProvider;
+import com.omega.repository.BookDao;
+import com.omega.repository.BookDaoJpaImpl;
+import com.omega.service.ActorService;
+import com.omega.service.ActorServiceImpl;
+import com.omega.service.BookService;
+import com.omega.service.BookServiceImpl;
+import com.typesafe.config.Config;
+import com.typesafe.config.ConfigFactory;
 import com.zaxxer.hikari.HikariDataSource;
+
+import akka.actor.ActorSystem;
 
 @Configuration("OmegaCoreConfig")
 @EnableTransactionManagement
@@ -95,5 +108,28 @@ public class OmegaCoreConfig {
 	@Bean
 	public String uploadDirectory() {
 		return "";
+	}
+	
+	@Bean
+	public OmegaContextProvider omegaContextProvider() {
+		return new OmegaContextProvider();
+	}
+	
+	@Bean
+	public ActorService actorService() {
+		String configFile = getClass().getClassLoader().getResource("application.local.conf").getFile();
+        Config config = ConfigFactory.parseFile(new File(configFile));
+        
+        return new ActorServiceImpl(ActorSystem.create("OmegaActorSystemLocal", config));
+	}
+	
+	@Bean
+	public BookDao bookDao() {
+		return new BookDaoJpaImpl(actorService());
+	}
+	
+	@Bean
+	public BookService bookService() {
+		return new BookServiceImpl(bookDao());
 	}
 }

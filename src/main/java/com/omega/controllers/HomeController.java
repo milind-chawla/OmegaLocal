@@ -7,6 +7,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.omega.controllers.config.ControllerConfig;
+import com.omega.controllers.config.HomeControllerConfig;
+import com.omega.controllers.util.ModelAndViewFormer;
+
 @Controller
 @RequestMapping(value = { "/home" })
 public class HomeController extends AbstractController {
@@ -18,43 +22,15 @@ public class HomeController extends AbstractController {
     
     @RequestMapping(value = { "/index", "/index/" }, method = { RequestMethod.GET })
 	public ModelAndView index(HttpServletRequest req) {
-    	ModelAndView mv = new ModelAndView();
+    	ModelAndView mv = new ModelAndViewFormer(this, new ModelAndView()).value();
     	
 	    mv.setViewName("home/index");
 	    
 	    return mv;
     }
-    
-    @Override
-	public Config config() {
+
+	@Override
+	public ControllerConfig config() {
 		return new HomeControllerConfig();
-	}
-	
-	public static class HomeControllerConfig implements Config {
-
-		@Override
-		public String id() {
-			return null;
-		}
-
-		@Override
-		public String name() {
-			return null;
-		}
-
-		@Override
-		public String view(String v) {
-			return null;
-		}
-
-		@Override
-		public String apath() {
-			return null;
-		}
-
-		@Override
-		public String rpath() {
-			return null;
-		}
 	}
 }

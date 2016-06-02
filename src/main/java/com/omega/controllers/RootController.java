@@ -4,6 +4,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.omega.controllers.config.ControllerConfig;
+import com.omega.controllers.config.RootControllerConfig;
+
 @Controller
 @RequestMapping(value = { "", "/" })
 public class RootController extends AbstractController {
@@ -14,35 +17,7 @@ public class RootController extends AbstractController {
 	}
 
 	@Override
-	public Config config() {
+	public ControllerConfig config() {
 		return new RootControllerConfig();
-	}
-	
-	public static class RootControllerConfig implements Config {
-
-		@Override
-		public String id() {
-			return null;
-		}
-
-		@Override
-		public String name() {
-			return null;
-		}
-
-		@Override
-		public String view(String v) {
-			return null;
-		}
-
-		@Override
-		public String apath() {
-			return null;
-		}
-
-		@Override
-		public String rpath() {
-			return null;
-		}
 	}
 }

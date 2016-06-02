@@ -5,10 +5,19 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
+import com.omega.actor.transport.BookTransport.BookUpdated;
+import com.omega.actor.transport.BookTransport.BookCreated;
 import com.omega.domain.Book;
+import com.omega.service.ActorService;
 
 public class BookDaoJpaImpl implements BookDao {
 	
+	private ActorService actorService = null;
+
+	public BookDaoJpaImpl(ActorService actorService) {
+		this.actorService = actorService;
+	}
+
 	@PersistenceContext(unitName = "OmegaUnit1")
     private EntityManager entityManager = null;
 
@@ -48,7 +57,9 @@ public class BookDaoJpaImpl implements BookDao {
 	public Book save(Book book) {
 		entityManager.persist(book);
         // actorService.bookAction(BookCreated(book.id, book.name))
-        
+		
+		actorService.bookAction(new BookCreated(book.getId(), book.getName()));
+		
 		return book;
 	}
 
@@ -60,6 +71,8 @@ public class BookDaoJpaImpl implements BookDao {
         book2.setName(book.getName());
         entityManager.persist(book2);
         // actorService.bookAction(BookUpdated(book2.id, book2.name))
+        
+        actorService.bookAction(new BookUpdated(book.getId(), book.getName()));
         
 		return book2;
 	}

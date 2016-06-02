@@ -11,6 +11,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.omega.controllers.config.BooksControllerConfig;
+import com.omega.controllers.config.ControllerConfig;
+import com.omega.controllers.util.ModelAndViewFormer;
 import com.omega.domain.Book;
 import com.omega.service.BookService;
 import com.omega.util.StringToInt;
@@ -29,7 +32,7 @@ public class BooksController extends AbstractController {
 	
 	@RequestMapping(value = { "index", "/index" }, method = { RequestMethod.GET })
 	public ModelAndView index(final HttpServletRequest req, @RequestParam(value="page", required=false) final String _page) {
-		final int page = new StringToInt(_page).value();
+		final int page = new StringToInt(_page).value() < 0 ? 1 : new StringToInt(_page).value();
 		String disable = NO_VALUE;
 		
 		final List<Book> books = bookService.getBooks(page);
@@ -40,7 +43,7 @@ public class BooksController extends AbstractController {
 			disable = "next";
 		}
 		
-		final ModelAndView mv = new ModelAndView();
+		final ModelAndView mv = new ModelAndViewFormer(this, new ModelAndView()).value();
 		
 		mv.addObject("disable", disable);
         mv.addObject("page", page);
@@ -50,37 +53,9 @@ public class BooksController extends AbstractController {
 		
 		return mv;
 	}
-	
+
 	@Override
-	public Config config() {
+	public ControllerConfig config() {
 		return new BooksControllerConfig();
-	}
-	
-	public static class BooksControllerConfig implements Config {
-
-		@Override
-		public String id() {
-			return null;
-		}
-
-		@Override
-		public String name() {
-			return null;
-		}
-
-		@Override
-		public String view(String v) {
-			return null;
-		}
-
-		@Override
-		public String apath() {
-			return null;
-		}
-
-		@Override
-		public String rpath() {
-			return null;
-		}
 	}
 }

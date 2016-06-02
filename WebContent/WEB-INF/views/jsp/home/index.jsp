@@ -10,7 +10,7 @@
     	<c:forEach items="${links}" var="link">
     		<div class="col-md-4">
 				<div class="alert alert-warning text-center" role="alert">
-	  				<a id="${link._1()}" href="${link._3()}" class="alert-link">${link._2()}</a>
+	  				<a id="${link['id']}" href="${link['path']}" class="alert-link">${link['name']}</a>
 	  			</div>
 	  		</div>
 	  		<c:set var="i" value="${i + 1}"></c:set>

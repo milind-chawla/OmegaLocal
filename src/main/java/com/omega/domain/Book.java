@@ -1,11 +1,15 @@
 package com.omega.domain;
 
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 import javax.validation.constraints.Size;
 
+@Entity
+@Table(name = "BOOK")
 public class Book {
 
 	@Id
@@ -19,6 +23,12 @@ public class Book {
 	@Column
 	private String image;
 	
+	public Book() {
+		this.id = -1L;
+		this.name = null;
+		this.image = null;
+	}
+
 	public Book(String name, String image) {
 		this.id = -1L;
 		this.name = name;
