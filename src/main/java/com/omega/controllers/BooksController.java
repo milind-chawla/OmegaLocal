@@ -25,6 +25,11 @@ public class BooksController extends AbstractController {
 	@Autowired
     private BookService bookService = null;
 	
+	@Override
+	public ControllerConfig config() {
+		return new BooksControllerConfig();
+	}
+	
 	@RequestMapping(value = { "", "/" }, method = { RequestMethod.GET })
 	public String root(HttpServletRequest req) {
 		return "redirect:/books/index";
@@ -52,10 +57,5 @@ public class BooksController extends AbstractController {
         mv.setViewName("books/index");
 		
 		return mv;
-	}
-
-	@Override
-	public ControllerConfig config() {
-		return new BooksControllerConfig();
 	}
 }

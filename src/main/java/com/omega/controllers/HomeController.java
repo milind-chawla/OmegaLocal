@@ -14,6 +14,11 @@ import com.omega.controllers.util.ModelAndViewFormer;
 @Controller
 @RequestMapping(value = { "/home" })
 public class HomeController extends AbstractController {
+	
+	@Override
+	public ControllerConfig config() {
+		return new HomeControllerConfig();
+	}
 
     @RequestMapping(value = { "", "/" }, method = { RequestMethod.GET })
 	public String root(HttpServletRequest req) {
@@ -22,15 +27,10 @@ public class HomeController extends AbstractController {
     
     @RequestMapping(value = { "/index", "/index/" }, method = { RequestMethod.GET })
 	public ModelAndView index(HttpServletRequest req) {
-    	ModelAndView mv = new ModelAndViewFormer(this, new ModelAndView()).value();
+    	final ModelAndView mv = new ModelAndViewFormer(this, new ModelAndView()).value();
     	
 	    mv.setViewName("home/index");
 	    
 	    return mv;
     }
-
-	@Override
-	public ControllerConfig config() {
-		return new HomeControllerConfig();
-	}
 }

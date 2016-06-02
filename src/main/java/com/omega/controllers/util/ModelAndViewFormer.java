@@ -30,7 +30,7 @@ public class ModelAndViewFormer {
 	}
 	
 	private void fillValues() {
-		ControllerConfig config = ctl.config();
+		final ControllerConfig config = ctl.config();
 		
 		mv.addObject("id", config.id());
         mv.addObject("name", config.name());
@@ -38,7 +38,7 @@ public class ModelAndViewFormer {
 	}
 	
 	private void fillLinks() {
-		List<Map<String, String>> links = new ArrayList<>();
+		final List<Map<String, String>> links = new ArrayList<>();
 		
 		Map<String, String> map = null;
 		ControllerConfig config = null;

@@ -10,14 +10,14 @@ import com.omega.controllers.config.RootControllerConfig;
 @Controller
 @RequestMapping(value = { "", "/" })
 public class RootController extends AbstractController {
+	
+	@Override
+	public ControllerConfig config() {
+		return new RootControllerConfig();
+	}
 
 	@RequestMapping(method = { RequestMethod.GET })
 	public String root() {
 		return "redirect:/home/index";
-	}
-
-	@Override
-	public ControllerConfig config() {
-		return new RootControllerConfig();
 	}
 }
