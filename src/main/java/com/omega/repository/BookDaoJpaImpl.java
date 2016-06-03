@@ -5,8 +5,8 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
-import com.omega.actor.transport.BookTransport.BookUpdated;
 import com.omega.actor.transport.BookTransport.BookCreated;
+import com.omega.actor.transport.BookTransport.BookUpdated;
 import com.omega.domain.Book;
 import com.omega.service.ActorService;
 
@@ -27,8 +27,12 @@ public class BookDaoJpaImpl implements BookDao {
 	}
 
 	@Override
-	public Book findByName(String name) {
-		return entityManager.find(Book.class, name);
+	public List<Book> findByName(String name) {
+		List<Book> books = entityManager.createQuery("SELECT b FROM Book b WHERE b.name = :name ORDER BY b.id ASC", Book.class)
+				.setParameter("name", name)
+				.getResultList();
+		
+		return books;
 	}
 
 	@Override

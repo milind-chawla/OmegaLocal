@@ -2,6 +2,8 @@ package com.omega.repository;
 
 import static org.junit.Assert.assertEquals;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
@@ -24,19 +26,32 @@ public class BookDaoJpaImplTest {
 	private EntityManager entityManager;
 	
 	private Book book;
+	private long bookId;
 	
 	@Before
 	public void setupData() {
-		book = new Book(1L, "Book 1", "[image]");
+		bookId = 24L;
+		book = new Book(bookId, "Book 1.1", "[image]");
 	}
 	
 	@Test
 	public void testFindById() {
-		Book book2 = entityManager.find(Book.class, 1L);
+		Book book2 = entityManager.find(Book.class, bookId);
 		
 		assertEquals(book.getId(), book2.getId());
 		assertEquals(book.getName(), book2.getName());
 		assertEquals(book.getImage(), book2.getImage());
+	}
+	
+	@Test
+	public void testFindByName() {
+		List<Book> books = entityManager.createQuery("SELECT b FROM Book b WHERE b.name = :name ORDER BY b.id ASC", Book.class)
+				.setParameter("name", book.getName())
+				.getResultList();
+		
+		for(Book book2: books) {
+			assertEquals(book.getName(), book2.getName());
+		}
 	}
 	
 	@Test
