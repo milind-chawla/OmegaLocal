@@ -68,8 +68,10 @@ public class BookDaoJpaImpl implements BookDao {
 		long id = book.getId();
 		        
         Book book2 = entityManager.find(Book.class, id);
+        
         book2.setName(book.getName());
         entityManager.persist(book2);
+        entityManager.flush();
         // actorService.bookAction(BookUpdated(book2.id, book2.name))
         
         actorService.bookAction(new BookUpdated(book.getId(), book.getName()));
