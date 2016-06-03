@@ -8,7 +8,6 @@ import javax.persistence.PersistenceContext;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
@@ -19,44 +18,39 @@ import com.omega.domain.Book;
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = { OmegaCoreConfig.class })
 @Transactional
-public class JpaBookRepositoryTest {
+public class BookDaoJpaImplTest {
 
 	@PersistenceContext(unitName = "OmegaUnit1")
 	private EntityManager entityManager;
-	
-	@Autowired
-	private BookDao bookDao;
 	
 	private Book book;
 	
 	@Before
 	public void setupData() {
-		book = new Book(1, "Book 1", "[image]");
+		book = new Book(1L, "Book 1", "[image]");
 	}
 	
 	@Test
 	public void testFindById() {
-		Book book = bookDao.findById(this.book.getId());
+		Book book2 = entityManager.find(Book.class, 1L);
 		
-		assertEquals(this.book.getId(), book.getId());
-		assertEquals(this.book.getName(), book.getName());
-		assertEquals(this.book.getImage(), book.getImage());
+		assertEquals(book.getId(), book2.getId());
+		assertEquals(book.getName(), book2.getName());
+		assertEquals(book.getImage(), book2.getImage());
 	}
 	
 	@Test
-	public void testStoreBookWithParams() {
+	public void testBookSave() {
 		Book book = new Book("[name]", "[image]");
-		bookDao.save(book);
 		
+		entityManager.persist(book);
 		entityManager.flush();
-	}
-	
-	@Test
-	public void testStoreBookWithoutParams() {
-		Book book = new Book();
-		bookDao.save(book);
 		
-		entityManager.flush();
+		Book book2 = entityManager.find(Book.class, book.getId());
+		
+		assertEquals(book.getId(), book2.getId());
+		assertEquals(book.getName(), book2.getName());
+		assertEquals(book.getImage(), book2.getImage());
 	}
 	
 	@Test

@@ -56,6 +56,7 @@ public class BookDaoJpaImpl implements BookDao {
 	@Override
 	public Book save(Book book) {
 		entityManager.persist(book);
+		entityManager.flush();
         // actorService.bookAction(BookCreated(book.id, book.name))
 		
 		actorService.bookAction(new BookCreated(book.getId(), book.getName()));
