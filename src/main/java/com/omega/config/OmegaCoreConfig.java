@@ -90,7 +90,6 @@ public class OmegaCoreConfig {
         try {
 			txManager.setEntityManagerFactory(entityManagerFactoryBean().getObject());
 		} catch (Exception e) {
-			e.printStackTrace();
 		}
         
         return txManager;

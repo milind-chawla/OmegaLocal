@@ -121,7 +121,7 @@ public class BooksController extends AbstractController {
 	}
 	
 	@RequestMapping(value = { "/new", "/new/" }, method = { RequestMethod.POST })
-	public ModelAndView newBookFormSubmit(@Valid Book book, BindingResult result, RedirectAttributes redirectAttributes) {
+	public ModelAndView newBookFormSubmit(@Valid Book book, BindingResult result, RedirectAttributes redirectAttributes) throws Exception {
 		final ModelAndView mv = new ModelAndViewFormer(this, new ModelAndView()).value();
 		
 		if(result.hasErrors()) {
