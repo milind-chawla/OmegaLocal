@@ -55,7 +55,7 @@ public class BookDaoJpaImplTest {
 	}
 	
 	@Test
-	public void testBookSave() {
+	public void testSave() {
 		Book book = new Book("[name]", "[image]");
 		
 		entityManager.persist(book);
@@ -69,7 +69,7 @@ public class BookDaoJpaImplTest {
 	}
 	
 	@Test
-	public void testBookUpdate() {
+	public void testUpdate() {
 		long id = book.getId();
         
 	    Book book2 = entityManager.find(Book.class, id);

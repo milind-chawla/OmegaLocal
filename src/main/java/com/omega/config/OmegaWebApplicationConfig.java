@@ -24,7 +24,7 @@ public class OmegaWebApplicationConfig extends WebMvcConfigurerAdapter {
         registry
             .addResourceHandler("/resources/**")
             .addResourceLocations("/resources/")
-            .setCachePeriod(31556926);
+            .setCachePeriod(Integer.valueOf(31556926));
     }
 	
 	@Override
