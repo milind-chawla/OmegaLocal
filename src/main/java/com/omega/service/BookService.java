@@ -8,8 +8,8 @@ public interface BookService {
 
 	public Book findById(long id);
 	public List<Book> findByName(String name);
-	public List<Book> getBooks();
-	public List<Book> getBooks(int page);
+	public List<Book> findAll();
+	public List<Book> findAll(int page);
 	
 	public Book save(Book book);
 	public Book update(Book book);

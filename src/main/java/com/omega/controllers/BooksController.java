@@ -48,7 +48,7 @@ public class BooksController extends AbstractController {
 		final int page = new StringToInt(_page).value() < 0 ? 1 : new StringToInt(_page).value();
 		String disable = NO_VALUE;
 		
-		final List<Book> books = bookService.getBooks(page);
+		final List<Book> books = bookService.findAll(page);
 		
 		if(page == 1) {
 			disable = "prev";
@@ -71,7 +71,7 @@ public class BooksController extends AbstractController {
 	@ResponseBody
 	public List<Book> indexJson() throws JSONException {
 		try {
-			return bookService.getBooks();
+			return bookService.findAll();
 		} catch (Exception e) {
 			throw new JSONException(e);
 		}

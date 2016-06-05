@@ -38,12 +38,12 @@ public class BookDaoJpaImpl implements BookDao {
 	}
 
 	@Override
-	public List<Book> getBooks() {
+	public List<Book> findAll() {
 		return entityManager.createQuery("SELECT b FROM Book b ORDER BY b.id ASC", Book.class).getResultList();
 	}
 
 	@Override
-	public List<Book> getBooks(int page) {
+	public List<Book> findAll(int page) {
 		int pageSize = 10;
 		
 		// TypedQuery<Integer> countQuery = entityManager.createQuery("SELECT count(b.id) FROM Book b", Integer.class);
