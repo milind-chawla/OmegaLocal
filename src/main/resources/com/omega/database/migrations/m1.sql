@@ -29,7 +29,7 @@ SET time_zone = "+00:00";
 CREATE TABLE `book` (
   `ID` bigint(20) NOT NULL,
   `NAME` varchar(255) NOT NULL,
-  `IMAGE` varchar(255) NOT NULL DEFAULT 'resources/images/thumbnail1.jpg'
+  `IMAGE` varchar(255) NOT NULL DEFAULT '[image]'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -37,21 +37,21 @@ CREATE TABLE `book` (
 --
 
 INSERT INTO `book` (`ID`, `NAME`, `IMAGE`) VALUES
-(1, 'Book 1', 'resources/images/thumbnail1.jpg'),
-(2, 'Book 2', 'resources/images/thumbnail1.jpg'),
-(3, 'Book 3x', 'resources/images/thumbnail1.jpg'),
-(4, 'Book 4x', 'resources/images/thumbnail1.jpg'),
-(23, 'Learn Clojure', 'resources/images/thumbnail1.jpg'),
-(24, 'Book 1.1', 'resources/images/thumbnail1.jpg'),
-(25, 'Book 1.1', 'resources/images/thumbnail1.jpg'),
-(26, 'Book 1.1', 'resources/images/thumbnail1.jpg'),
-(27, 'Book 1.2', 'resources/images/thumbnail1.jpg'),
-(28, 'Book 1.3', 'resources/images/thumbnail1.jpg'),
-(36, 'Bkk', 'resources/images/thumbnail1.jpg'),
-(37, 'Book 1.1cx', 'resources/images/thumbnail1.jpg'),
-(38, 'Book 1.1d', 'resources/images/thumbnail1.jpg'),
-(39, 'Bv3', 'resources/images/thumbnail1.jpg'),
-(40, 'Noname 1', 'resources/images/thumbnail1.jpg');
+(1, 'Book 1', '[image]'),
+(2, 'Book 2', '[image]'),
+(3, 'Book 3x', '[image]'),
+(4, 'Book 4x', '[image]'),
+(23, 'Learn Clojure', '[image]'),
+(24, 'Book 1.1', '[image]'),
+(25, 'Book 1.1', '[image]'),
+(26, 'Book 1.1', '[image]'),
+(27, 'Book 1.2', '[image]'),
+(28, 'Book 1.3', '[image]'),
+(36, 'Bkk', '[image]'),
+(37, 'Book 1.1cx', '[image]'),
+(38, 'Book 1.1d', '[image]'),
+(39, 'Bv3', '[image]'),
+(40, 'Noname 1', '[image]');
 
 --
 -- Indexes for dumped tables
