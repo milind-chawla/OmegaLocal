@@ -1,7 +1,5 @@
 package com.omega.repository;
 
-import static org.junit.Assert.assertNotNull;
-
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -36,10 +34,6 @@ public class BookDaoJpaImpl implements BookDao {
 				.setParameter("name", name)
 				.getResultList();
 		
-		/*for(Book book2: books) {
-			assertEquals(name, book2.getName());
-		}*/
-		
 		return books;
 	}
 
@@ -69,17 +63,8 @@ public class BookDaoJpaImpl implements BookDao {
 	public Book save(Book book) {
 		book.setImage("[image]");
 		
-		assertNotNull(book.getName());
-		assertNotNull(book.getImage());
-		
 		entityManager.persist(book);
 		entityManager.flush();
-		
-		/*Book book2 = entityManager.find(Book.class, book.getId());
-		
-		assertEquals(book.getId(), book2.getId());
-		assertEquals(book.getName(), book2.getName());
-		assertEquals(book.getImage(), book2.getImage());*/
 		
 		actorService.bookAction(new BookCreated(book.getId(), book.getName()));
 		
@@ -88,23 +73,11 @@ public class BookDaoJpaImpl implements BookDao {
 
 	@Override
 	public Book update(Book book) {
-		long id = book.getId();
-        
-	    Book book2 = entityManager.find(Book.class, id);
-	    
+	    Book book2 = entityManager.find(Book.class, book.getId());
 	    book2.setName(book.getName());
-	    
-	    assertNotNull(book2.getName());
-		assertNotNull(book2.getImage());
 	    
 	    entityManager.persist(book2);
 	    entityManager.flush();
-	    
-	    /*Book book3 = entityManager.find(Book.class, id);
-	    
-	    assertEquals(book2.getId(), book3.getId());
-		assertEquals(book2.getName(), book3.getName());
-		assertEquals(book2.getImage(), book3.getImage());*/
 	    
 	    actorService.bookAction(new BookUpdated(book.getId(), book.getName()));
         
