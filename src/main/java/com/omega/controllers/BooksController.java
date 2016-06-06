@@ -6,6 +6,7 @@ import java.util.List;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -67,7 +68,7 @@ public class BooksController extends AbstractController {
 		return mv;
 	}
 	
-	@RequestMapping(value = { "/index.json", "/index.json/" }, method = { RequestMethod.GET }, produces = { "application/json; charset=UTF-8" })
+	@RequestMapping(value = { "/index.json", "/index.json/" }, method = { RequestMethod.GET }, produces = { MediaType.APPLICATION_JSON_UTF8_VALUE })
 	@ResponseBody
 	public List<Book> indexJson() throws JSONException {
 		try {
@@ -96,7 +97,7 @@ public class BooksController extends AbstractController {
 		return mv;
 	}
 	
-	@RequestMapping(value = { "/{bid}.json", "/{bid}.json/" }, method = { RequestMethod.GET }, produces = { "application/json; charset=UTF-8" })
+	@RequestMapping(value = { "/{bid}.json", "/{bid}.json/" }, method = { RequestMethod.GET }, produces = { MediaType.APPLICATION_JSON_UTF8_VALUE })
 	@ResponseBody
 	public Book showJson(@PathVariable("bid") String bid) throws JSONException {
 		try {
